@@ -33,8 +33,8 @@ def listar_livros(conexao):
     try:
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM Livros")
-        livros = cursor.fetchall()
-        for livro in livros:
+        livros = cursor.fetchall() #pega tudo que o cursor selecionou e manda para livros
+        for livro in livros:#para cada livro em livros
             print(livro)
     except Error as e:
         print(f"Erro ao listar livros: {e}")
@@ -45,7 +45,7 @@ def atualizar_livro(conexao, id, novo_titulo):
         sql = "UPDATE Livros SET titulo = %s WHERE id = %s"
         valores = (novo_titulo, id)
         cursor.execute(sql, valores)
-        conexao.commit()
+        conexao.commit()#Confirma a alteração no banco de dados
         print(f"Livro com ID {id} atualizado para '{novo_titulo}'!")
     except Error as e:
         print(f"Erro ao atualizar livro: {e}")
